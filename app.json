@@ -1,0 +1,12 @@
+{
+  "name": "burrito-time",
+  "displayName": "burrito-time",
+  "expo": {
+    "name": "burrito-time",
+    "slug": "burrito-time",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
