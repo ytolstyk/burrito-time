@@ -45,13 +45,15 @@ export const DateText = styled.Text`
 `;
 
 export const Timer = styled.Text`
-  margin-top: ${baseMult(2)};
   font-size: 36px;
   text-align: center;
+
+  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(2)};`};
 `;
 
 export const BurritoCount = styled.Text`
-  margin-top: ${baseMult(2)};
   font-size: 24px;
   text-align: center;
+
+  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(2)};`};
 `;

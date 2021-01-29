@@ -16,8 +16,9 @@ export const timeHelper = {
     minutes = timeHelper.alwaysTwoDigits(minutes);
     seconds = timeHelper.alwaysTwoDigits(seconds);
     milliseconds = timeHelper.alwaysThreeDigits(milliseconds);
+    const dayOrDays = days === 1 ? 'day' : 'days';
 
-    return `${days} days, ${hours}:${minutes}:${seconds}.${milliseconds}`;
+    return `${days} ${dayOrDays}, ${hours}:${minutes}:${seconds}.${milliseconds}`;
   },
 
   alwaysTwoDigits(num) {

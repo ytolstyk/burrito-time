@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import moment from 'moment';
 import React, { useState, useEffect } from 'react';
+import { Dimensions } from 'react-native';
 import {
   Container,
   Title,
@@ -19,6 +19,7 @@ export default function App() {
   const [count, setCount] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
   const [timeNow, setTimeNow] = useState(Date.now());
+  const [isLandscape, setIsLandscape] = useState(false);
 
   function handlePress() {
     localStorageHelper.setBurritoCount(count + 1);
@@ -29,7 +30,15 @@ export default function App() {
   }
 
   function timeInSeconds() {
+    if (timestamp === 0) {
+      return '0 days, 00:00:00.000';
+    }
+
     return timeHelper.count(timeNow, timestamp);
+  }
+
+  function onDimensionChange({ screen }) {
+    setIsLandscape(screen.height <= screen.width);
   }
 
   async function setStuff() {
@@ -44,12 +53,19 @@ export default function App() {
       setTimeNow(Date.now());
     }, 33);
 
+    Dimensions.addEventListener("change", onDimensionChange);
+
     return () => {
+      Dimensions.removeEventListener("change", onDimensionChange);
       clearInterval(interval);
     };
   }, []);
 
   function renderTimestamp() {
+    if (timestamp === 0) {
+      return "You haven't had a burrito yet";
+    }
+
     return moment(timestamp).format('MMMM Do YYYY, h:mm:ss a');
   }
 
@@ -59,8 +75,12 @@ export default function App() {
         <Title>Time Since Last Burrito</Title>
         <TimerWrapper>
           <DateText>{renderTimestamp()}</DateText>
-          <Timer>{timeInSeconds()}</Timer>
-          <BurritoCount>Total burritos: {count}</BurritoCount>
+          <Timer isLandscape={isLandscape}>
+            {timeInSeconds()}
+          </Timer>
+          <BurritoCount isLandscape={isLandscape}>
+            Total burritos: {count}
+          </BurritoCount>
         </TimerWrapper>
       </TopContainer>
       <BottomContainer>
@@ -68,7 +88,6 @@ export default function App() {
           <EatButtonText>Eat!</EatButtonText>
         </EatButton>
       </BottomContainer>
-      <StatusBar style="auto" />
     </Container>
   );
 }
