@@ -1,12 +1,19 @@
 {
-  "name": "burrito-time",
+  "name": "Eat-a-burrita",
   "displayName": "Eat-a-Burrita",
   "expo": {
-    "name": "burrito-time",
+    "name": "Eat-a-Burrita",
+    "icon": "./assets/logo.png",
     "slug": "burrito-time",
     "version": "1.0.0",
     "assetBundlePatterns": [
-      "**/*"
-    ]
+      "assets/**/*"
+    ],
+    "android": {
+      "package": "com.ytolstykh.eataburrita",
+      "versionCode": 1,
+      "permissions" : [],
+      "enableDangerousExperimentalLeanBuilds": true
+    }
   }
 }
