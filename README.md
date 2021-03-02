@@ -13,16 +13,3 @@ For IOS Simulator
 ## Running the Project
 1. Start the app `npm start`
 2. Run Expo `expo start`
-
-## Architecture
-```
-/__tests__/
-/android/
-/ios/
-/src/
-  | - /helpers/       <----- utilities
-  | - /styles/        <----- styled components   
-index.js
-App.js                <----- main application
-App.styles.js
-```
