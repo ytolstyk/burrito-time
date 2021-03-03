@@ -20,17 +20,29 @@ export const TimerWrapper = styled.View`
   flex: 1;
 `;
 
+const buttonDimensions = baseMult(10);
+const wideButtonDimensions = baseMult(8);
+
 export const EatButton = styled.TouchableOpacity`
   display: flex;
   margin-bottom: ${baseMult(2)};
   align-self: center;
-  width: ${baseMult(10)};
-  height: ${baseMult(10)};
+  width: ${buttonDimensions};
+  height: ${buttonDimensions};
   padding: ${baseMult(1)};
   background-color: ${colors.purple};
   border-radius: ${baseMult(10)};
   align-items: center;
   justify-content: center;
+
+  ${props => {
+    if (props.isLandscape) {
+      return `
+        width: ${wideButtonDimensions};
+        height: ${wideButtonDimensions};
+      `;
+    }
+  }}
 `;
 
 export const EatButtonText = styled.Text`
