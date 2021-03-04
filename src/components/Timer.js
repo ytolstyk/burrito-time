@@ -2,7 +2,6 @@ import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import {
-  Container,
   Title,
   EatButton,
   EatButtonText,
@@ -11,18 +10,20 @@ import {
   Timer,
   BurritoCount
 } from './Timer.styles';
-import { localStorageHelper } from './src/helpers/localStorageHelper';
-import { TopContainer } from './src/styles/common';
-import { timeHelper } from './src/helpers/timeHelper';
+import { localStorageHelper } from '../helpers/localStorageHelper';
+import { TopContainer } from '../styles/common';
+import { timeHelper } from '../helpers/timeHelper';
 import { connect } from 'react-redux';
-import { updateCountAndTimestamp } from './timerActions';
-import { timerSelectors } from './timerReducer';
+import { updateCountAndTimestamp } from '../timerActions';
+import { timerSelectors } from '../timerReducer';
+import { NavBar } from './NavBar';
+import { Container } from '../styles/common';
 
 function TimerComponent(props) {
   const [timeNow, setTimeNow] = useState(Date.now());
   const [isLandscape, setIsLandscape] = useState(false);
 
-  function handlePress() {
+  function handleTimerPress() {
     const dateNow = Date.now();
     const newCount = props.burritoCount + 1;
 
@@ -89,6 +90,7 @@ function TimerComponent(props) {
   return (
     <Container>
       <TopContainer>
+        <NavBar {...props} />
         <Title>Time Since Last Burrito</Title>
         <TimerWrapper>
           <DateText>{renderTimestamp()}</DateText>
@@ -100,7 +102,7 @@ function TimerComponent(props) {
           </BurritoCount>
         </TimerWrapper>
         <EatButton
-          onPress={handlePress}
+          onPress={handleTimerPress}
           accessibilityLabel="Reset timer"
           isLandscape={isLandscape}
         >

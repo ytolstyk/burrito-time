@@ -9,6 +9,7 @@
     "assetBundlePatterns": [
       "assets/**/*"
     ],
+    "orientation": "portrait",
     "android": {
       "package": "com.ytolstykh.eataburrita",
       "versionCode": 2,

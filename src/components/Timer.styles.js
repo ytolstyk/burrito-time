@@ -1,16 +1,10 @@
 import styled from 'styled-components/native';
-import { colors } from './src/styles/colors';
-import { baseMult } from './src/styles/mixins';
-
-export const Container = styled.View`
-  flex: 1;
-  background-color: ${colors.white};
-  padding-top: ${baseMult(2)};
-  padding-bottom: ${baseMult(2)};
-`;
+import { colors } from '../styles/colors';
+import { baseMult } from '../styles/mixins';
 
 export const Title = styled.Text`
-  margin: ${baseMult(2)} 0;
+  margin-top: ${baseMult(1 / 2)};
+  margin-bottom: ${baseMult(1)};
   font-size: 32px;
   text-align: center;
   font-weight: 900;
@@ -60,12 +54,12 @@ export const Timer = styled.Text`
   font-size: 36px;
   text-align: center;
 
-  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(2)};`};
+  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(1)};`};
 `;
 
 export const BurritoCount = styled.Text`
   font-size: 24px;
   text-align: center;
 
-  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(2)};`};
+  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(1)};`};
 `;
