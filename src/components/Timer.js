@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { Share } from 'react-native';
 import {
-  EatButton,
-  EatButtonText,
   DateText,
 } from './Timer.styles';
 import { timeHelper } from '../helpers/timeHelper';
+import { sharingHelper } from '../helpers/sharingHelper';
 import { connect } from 'react-redux';
 import { updateCountAndTimestamp } from '../timerActions';
 import { timerSelectors } from '../timerReducer';
 import { metaSelectors } from '../metaReducer';
 import { NavBar } from './NavBar';
-import { Container, Flex } from '../styles/common';
+import { Container, Flex, Margin } from '../styles/common';
 import { themes } from '../styles/constants';
 import { H2, H4 } from '../styles/typography';
+import { RoundButton } from '../styles/buttons';
+import { Ionicons } from '@expo/vector-icons';
 
 function TimerComponent(props) {
   const [timeNow, setTimeNow] = useState(Date.now());
@@ -25,6 +27,16 @@ function TimerComponent(props) {
       count: newCount,
       timestamp: dateNow,
     });
+  }
+
+  async function handleShare() {
+    try {
+      await Share.share({
+        message: sharingHelper.randomMessage(),
+      });
+    } catch(e) {
+      console.warn(e);
+    }
   }
 
   function timeInSeconds() {
@@ -70,12 +82,20 @@ function TimerComponent(props) {
           Total burritos: {props.burritoCount}
         </H4>
       </Flex>
-      <EatButton
-        onPress={handleTimerPress}
-        accessibilityLabel="Reset timer"
-      >
-        <EatButtonText>Eat!</EatButtonText>
-      </EatButton>
+
+      <Margin bottom={2}>
+        <Flex flexDirection="row" alignItems="center" justifyContent="center">
+          <RoundButton size="small" />
+          <Margin left={1} right={1}>
+            <RoundButton onPress={handleTimerPress} color="purple" size="large">
+              Eat!
+            </RoundButton>
+          </Margin>
+          <RoundButton onPress={handleShare} color="orange" size="small">
+            <Ionicons name="share-social" size={24} color="white" />
+          </RoundButton>
+        </Flex>
+      </Margin>
     </Container>
   );
 }

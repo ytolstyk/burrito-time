@@ -40,7 +40,7 @@ const sidePadding = baseMult(1);
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${colors.white};
-  padding-top: ${Constants.statusBarHeight}px;
+  margin-top: ${Constants.statusBarHeight}px;
   padding-bottom: ${baseMult(2)};
   padding-left: ${sidePadding};
   padding-right: ${sidePadding};
