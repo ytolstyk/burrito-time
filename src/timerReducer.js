@@ -17,6 +17,8 @@ export function timerReducer(state = initialState, action) {
       };
 
     case BURRITO_TIMESTAMP:
+      console.log(action.payload);
+
       localStorageHelper.setTimestamp(Number(action.payload));
 
       return {

@@ -44,6 +44,12 @@ export const Container = styled.SafeAreaView`
   padding-bottom: ${baseMult(2)};
   padding-left: ${sidePadding};
   padding-right: ${sidePadding};
+
+  ${props => {
+    if (props.isDark) {
+      return `background-color: ${colors.darkGrey};`;
+    }
+  }}
 `;
 
 export const Margin = styled.View`
@@ -54,10 +60,10 @@ export const Margin = styled.View`
   ${props => (props.left ? `margin-left: ${baseMult(props.left)};` : '')}
 `;
 
-const sectionMargin = baseMult(1);
+const sectionMargin = baseMult(1.5);
 
 export const Section = styled.View`
-  padding-bottom: ${baseMult(1)};
+  padding-bottom: ${sectionMargin};
   margin-bottom: ${sectionMargin};
   border-bottom-color: ${colors.lightGrey};
   border-bottom-width: 1px;

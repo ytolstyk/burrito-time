@@ -8,8 +8,10 @@ import { timeHelper } from '../helpers/timeHelper';
 import { connect } from 'react-redux';
 import { updateCountAndTimestamp } from '../timerActions';
 import { timerSelectors } from '../timerReducer';
+import { metaSelectors } from '../metaReducer';
 import { NavBar } from './NavBar';
 import { Container, Flex } from '../styles/common';
+import { themes } from '../styles/constants';
 import { H2, H4 } from '../styles/typography';
 
 function TimerComponent(props) {
@@ -56,15 +58,15 @@ function TimerComponent(props) {
   }
 
   return (
-    <Container>
+    <Container isDark={props.theme === themes.dark}>
       <NavBar {...props} />
-      <H2 center>Time Since Last Burrito</H2>
+      <H2 center {...props}>Time Since Last Burrito</H2>
       <Flex flex={1}>
         <DateText>{renderTimestamp()}</DateText>
-        <H2 center>
+        <H2 center {...props}>
           {timeInSeconds()}
         </H2>
-        <H4 center>
+        <H4 center {...props}>
           Total burritos: {props.burritoCount}
         </H4>
       </Flex>
@@ -82,6 +84,7 @@ function mapStateToProps(state) {
   return {
     burritoCount: timerSelectors.burritoCount(state),
     lastTimestamp: timerSelectors.lastBurritoTimestamp(state),
+    theme: metaSelectors.theme(state),
   };
 }
 

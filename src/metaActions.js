@@ -8,7 +8,7 @@ export function orientationIsLandscape(isLandscape) {
   };
 }
 
-export function theme(name) {
+export function updateTheme(name) {
   return {
     type: THEME,
     payload: name,

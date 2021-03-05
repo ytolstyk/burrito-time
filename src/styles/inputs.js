@@ -1,9 +1,11 @@
 import styled from 'styled-components/native';
 import { colors } from './colors';
 import { constants } from './constants';
-import { baseMult } from './mixins';
+import { baseMult, themeProps } from './mixins';
 
 export const Input = styled.TextInput`
+  ${themeProps};
+
   border: 1px solid ${colors.lightGrey};
   border-radius: ${constants.borderRadius};
   padding: ${baseMult(1 / 4)};

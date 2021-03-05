@@ -11,4 +11,6 @@ export function themeProps(props) {
   if (props.theme === themes.dark) {
     return `color: ${colors.lightGrey};`;
   }
+
+  return `color: ${colors.black};`;
 }

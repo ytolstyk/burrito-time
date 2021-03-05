@@ -7,7 +7,7 @@ function centerText(props) {
   }
 }
 
-const StyledText = styled.Text`
+export const StyledText = styled.Text`
   ${centerText};
   ${themeProps};
 `;
