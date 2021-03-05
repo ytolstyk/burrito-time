@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/store';
 import { Ionicons } from '@expo/vector-icons';
 import Router from './src/components/Router';
-import { theme } from './src/metaActions';
+import { updateTheme } from './src/metaActions';
 import { updateCountAndTimestamp } from './src/timerActions';
 import { localStorageHelper } from './src/helpers/localStorageHelper';
 
@@ -28,7 +28,7 @@ function App() {
       timestamp: await localStorageHelper.getTimestamp(),
     }));
 
-    store.dispatch(theme(await localStorageHelper.getTheme()));
+    store.dispatch(updateTheme(await localStorageHelper.getTheme()));
 
     await Promise.all([...fontAssets]);
   }
