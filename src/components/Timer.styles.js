@@ -2,18 +2,6 @@ import styled from 'styled-components/native';
 import { colors } from '../styles/colors';
 import { baseMult } from '../styles/mixins';
 
-export const Title = styled.Text`
-  margin-top: ${baseMult(1 / 2)};
-  margin-bottom: ${baseMult(1)};
-  font-size: 32px;
-  text-align: center;
-  font-weight: 900;
-`;
-
-export const TimerWrapper = styled.View`
-  flex: 1;
-`;
-
 const buttonDimensions = baseMult(10);
 const wideButtonDimensions = baseMult(8);
 
@@ -48,18 +36,4 @@ export const EatButtonText = styled.Text`
 export const DateText = styled.Text`
   color: ${colors.grey};
   text-align: center;
-`;
-
-export const Timer = styled.Text`
-  font-size: 36px;
-  text-align: center;
-
-  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(1)};`};
-`;
-
-export const BurritoCount = styled.Text`
-  font-size: 24px;
-  text-align: center;
-
-  ${(props) => props.isLandscape ? `margin-top: ${baseMult(1 / 2)};` : `margin-top: ${baseMult(1)};`};
 `;

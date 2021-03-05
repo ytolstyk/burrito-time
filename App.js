@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Provider } from 'react-redux';
 import { store } from './src/store';
 import { Ionicons } from '@expo/vector-icons';
-import TimerComponent from './src/components/Timer';
-import { SettingsComponent } from './src/components/Settings';
+import Router from './src/components/Router';
+import { theme } from './src/metaActions';
+import { updateCountAndTimestamp } from './src/timerActions';
+import { localStorageHelper } from './src/helpers/localStorageHelper';
 
 function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
 }
-
-const Drawer = createDrawerNavigator();
 
 function App() {
   const [isReady, setIsReady] = useState(false);
@@ -24,6 +22,13 @@ function App() {
 
   async function loadAssetsAsync() {
     const fontAssets = cacheFonts([Ionicons.font]);
+
+    store.dispatch(updateCountAndTimestamp({
+      count: await localStorageHelper.getBurritoCount(),
+      timestamp: await localStorageHelper.getTimestamp(),
+    }));
+
+    store.dispatch(theme(await localStorageHelper.getTheme()));
 
     await Promise.all([...fontAssets]);
   }
@@ -39,14 +44,9 @@ function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Provider store={store}>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Home" component={TimerComponent} />
-          <Drawer.Screen name="Settings" component={SettingsComponent} />
-        </Drawer.Navigator>
-      </Provider>
-    </NavigationContainer>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
 }
 

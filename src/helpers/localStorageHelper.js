@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TIMESTAMP = 'TIMESTAMP';
 const BURRITO_COUNT = 'BURRITO_COUNT';
+const THEME = 'THEME';
 
 function valueOrZero(value) {
   return value ? value : 0;
@@ -12,7 +13,7 @@ export const localStorageHelper = {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(state));
     } catch (e) {
-      // saving error
+      console.warn(e);
     }
   },
 
@@ -22,7 +23,7 @@ export const localStorageHelper = {
 
       return await JSON.parse(value);
     } catch(e) {
-      // error reading value
+      console.warn(e);
     }
   },
 
@@ -35,9 +36,9 @@ export const localStorageHelper = {
   },
 
   async getTimestamp() {
-    const timestamp = localStorageHelper.get(TIMESTAMP);
+    const timestamp = await localStorageHelper.get(TIMESTAMP);
 
-    return valueOrZero(await timestamp);
+    return valueOrZero(timestamp);
   },
 
   setBurritoCount(num) {
@@ -45,8 +46,16 @@ export const localStorageHelper = {
   },
 
   async getBurritoCount() {
-    const count = localStorageHelper.get(BURRITO_COUNT);
+    const count = await localStorageHelper.get(BURRITO_COUNT);
 
-    return valueOrZero(await count);
+    return valueOrZero(count);
+  },
+
+  setTheme(theme) {
+    return localStorageHelper.set(THEME, theme);
+  },
+
+  async getTheme() {
+    return await localStorageHelper.get(THEME);
   },
 };

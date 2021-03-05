@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const timeHelper = {
   count(now, stamp) {
     let elapsed = now - stamp;
@@ -23,4 +25,8 @@ export const timeHelper = {
   alwaysTwoDigits(num) {
     return num < 10 ? `0${num}` : num;
   },
+
+  formatTime(time) {
+    return moment(time).format('MMMM Do YYYY, h:mm:ssa');
+  }
 };
