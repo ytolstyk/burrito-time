@@ -15,6 +15,7 @@ import { Flex } from '../styles/common';
 import { updateLastTimestamp, updateCount } from '../timerActions';
 import { updateTheme } from '../metaActions';
 import { themes } from '../styles/constants';
+import { colors } from '../styles/colors';
 
 const steps = ['date', 'time'];
 
@@ -57,26 +58,27 @@ function SettingsComponent(props) {
     }
   }
 
+  const isDarkThemeEnabled = props.theme === themes.dark;
+
   return (
-    <Container isDark={props.theme === themes.dark}>
+    <Container>
       <NavBar {...props} renderBack />
       <ScrollView>
-        <H2 center theme={props.theme}>Settings</H2>
+        <H2 center>Settings</H2>
         <Section>
           <Margin bottom={2}>
-            <Label theme={props.theme}>Number of burritos</Label>
+            <Label>Number of burritos</Label>
             <Input
               keyboardType="number-pad"
               placeholder="Total burritos"
               value={String(props.burritoCount)}
               onChangeText={handleInputChange}
-              theme={props.theme}
             />
           </Margin>
 
-          <Label theme={props.theme}>Last burrito date</Label>
+          <Label>Last burrito date</Label>
           <Flex flexDirection="row" alignItems="center">
-            <StyledText theme={props.theme}>
+            <StyledText>
               {timeHelper.formatTime(props.lastTimestamp)}
             </StyledText>
             {renderDatepicker()}
@@ -87,12 +89,17 @@ function SettingsComponent(props) {
         </Section>
 
         <Section>
-          <Label theme={props.theme}>Theme</Label>
+          <Label>Theme</Label>
           <Flex flexDirection="row" alignItems="center">
             <Flex flex={1}>
-              <StyledText theme={props.theme}>Dark</StyledText>
+              <StyledText>Dark</StyledText>
             </Flex>
-            <Switch onValueChange={handleThemeChange} value={props.theme === themes.dark} />
+            <Switch
+              onValueChange={handleThemeChange}
+              value={isDarkThemeEnabled}
+              trackColor={{ false: colors.lightGrey, true: colors.lightGrey }}
+              thumbColor={isDarkThemeEnabled ? colors.purple : colors.grey}
+            />
           </Flex>
         </Section>
       </ScrollView>

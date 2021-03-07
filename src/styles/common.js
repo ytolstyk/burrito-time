@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { baseMult } from './mixins';
 import { colors } from './colors';
+import { themes } from './constants';
 import Constants from 'expo-constants';
 
 export const Flex = styled.View`
@@ -46,7 +47,7 @@ export const Container = styled.SafeAreaView`
   padding-right: ${sidePadding};
 
   ${props => {
-    if (props.isDark) {
+    if (props.theme.name === themes.dark) {
       return `background-color: ${colors.darkGrey};`;
     }
   }}

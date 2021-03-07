@@ -70,15 +70,15 @@ function TimerComponent(props) {
   }
 
   return (
-    <Container isDark={props.theme === themes.dark}>
+    <Container>
       <NavBar {...props} />
-      <H2 center {...props}>Time Since Last Burrito</H2>
+      <H2 center>Time Since Last Burrito</H2>
       <Flex flex={1}>
         <DateText>{renderTimestamp()}</DateText>
-        <H2 center {...props}>
+        <H2 center>
           {timeInSeconds()}
         </H2>
-        <H4 center {...props}>
+        <H4 center>
           Total burritos: {props.burritoCount}
         </H4>
       </Flex>

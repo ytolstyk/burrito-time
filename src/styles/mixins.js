@@ -8,7 +8,7 @@ export function baseMult(num) {
 }
 
 export function themeProps(props) {
-  if (props.theme === themes.dark) {
+  if (props.theme.name === themes.dark) {
     return `color: ${colors.lightGrey};`;
   }
 
