@@ -11,7 +11,6 @@ import { timerSelectors } from '../timerReducer';
 import { metaSelectors } from '../metaReducer';
 import { NavBar } from './NavBar';
 import { Container, Flex, Margin } from '../styles/common';
-import { themes } from '../styles/constants';
 import { H2, H4 } from '../styles/typography';
 import { RoundButton } from '../styles/buttons';
 import { Ionicons } from '@expo/vector-icons';
@@ -32,7 +31,7 @@ function TimerComponent(props) {
   async function handleShare() {
     try {
       await Share.share({
-        message: sharingHelper.randomMessage(),
+        message: sharingHelper.randomMessage(props.lastTimestamp, props.burritoCount),
       });
     } catch(e) {
       console.warn(e);

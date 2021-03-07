@@ -58,6 +58,14 @@ function SettingsComponent(props) {
     }
   }
 
+  function renderLastDate() {
+    if (props.lastTimestamp === 0) {
+      return 'You have not had a burrito yet';
+    }
+
+    return timeHelper.formatTime(props.lastTimestamp);
+  }
+
   const isDarkThemeEnabled = props.theme === themes.dark;
 
   return (
@@ -79,7 +87,7 @@ function SettingsComponent(props) {
           <Label>Last burrito date</Label>
           <Flex flexDirection="row" alignItems="center">
             <StyledText>
-              {timeHelper.formatTime(props.lastTimestamp)}
+              {renderLastDate()}
             </StyledText>
             {renderDatepicker()}
             <LinkButton onPress={() => setShowDatepicker(true)}>
