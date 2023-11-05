@@ -1,8 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const TIMESTAMP = 'TIMESTAMP';
-const BURRITO_COUNT = 'BURRITO_COUNT';
-const THEME = 'THEME';
+const TIMESTAMP = "TIMESTAMP";
+const BURRITO_COUNT = "BURRITO_COUNT";
+const THEME = "THEME";
 
 function valueOrZero(value) {
   return value ? value : 0;
@@ -19,10 +19,10 @@ export const localStorageHelper = {
 
   async get(key) {
     try {
-      const value = await AsyncStorage.getItem(key)
+      const value = await AsyncStorage.getItem(key);
 
       return await JSON.parse(value);
-    } catch(e) {
+    } catch (e) {
       console.warn(e);
     }
   },
