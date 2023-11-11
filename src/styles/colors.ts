@@ -6,4 +6,6 @@ export const colors = {
   grey: '#808080',
   lightGrey: '#ccc',
   darkGrey: '#1a1a1a',
+  transparent: 'transparent',
+  buttonPrimary: '#9d00d6',
 };

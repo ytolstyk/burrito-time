@@ -1,13 +1,17 @@
 import styled from 'styled-components/native';
-import { baseMult, themeProps } from './mixins';
+import { ThemeProps, baseMult, themeProps } from './mixins';
 
-function centerText(props) {
-  if (props.center) {
+type CenterProps = {
+  center?: boolean;
+}
+
+function centerText({ center }: CenterProps) {
+  if (center) {
     return 'text-align: center;';
   }
 }
 
-export const StyledText = styled.Text`
+export const StyledText = styled.Text<CenterProps & ThemeProps>`
   ${centerText};
   ${themeProps};
 `;

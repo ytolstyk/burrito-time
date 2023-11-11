@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
 import { colors } from './colors';
 import { constants } from './constants';
-import { baseMult, themeProps } from './mixins';
+import { ThemeProps, baseMult, themeProps } from './mixins';
 
-export const Input = styled.TextInput`
+export const Input = styled.TextInput<ThemeProps>`
   ${themeProps};
 
   border: 1px solid ${colors.lightGrey};
