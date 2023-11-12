@@ -13,8 +13,13 @@
     "android": {
       "package": "com.ytolstykh.eataburrita",
       "versionCode": 3,
-      "permissions" : [],
+      "permissions": [],
       "enableDangerousExperimentalLeanBuilds": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f3fc3d2d-fcac-44d5-8d72-08e0951a20b9"
+      }
     }
   }
 }

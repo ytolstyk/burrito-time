@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { ThemeProps, baseMult, themeProps } from './mixins';
+import { colors } from './colors';
 
 type CenterProps = {
   center?: boolean;
@@ -52,4 +53,10 @@ export const H5 = styled(StyledText)`
 export const Label = styled(StyledText)`
   font-weight: bold;
   font-size: 16px;
+`;
+
+export const StatCounterText = styled(StyledText)`
+  font-size: 16px;
+  margin: 3px;
+  color: ${colors.grey};
 `;

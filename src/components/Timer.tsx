@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Share } from "react-native";
 import { DateText } from "./Timer.styles";
-import { timeHelper } from "../helpers/timeHelper";
+import {
+  burritosLastSevenDays,
+  burritosLastThirtyDays,
+  timeHelper,
+} from "../helpers/timeHelper";
 import { randomMessage } from "../helpers/sharingHelper";
 import { Container, Flex, Margin } from "../styles/common";
-import { H2, H4 } from "../styles/typography";
+import { H2, H4, StatCounterText } from "../styles/typography";
 import { RoundButton } from "../styles/buttons";
 import { Ionicons } from "@expo/vector-icons";
 import { useTimer } from "./useTimer";
 import { Text } from "react-native";
+import { BurritoEatingAnimation } from "./BurritoEatingAnimation";
 
 export function TimerComponent() {
   const [timeNow, setTimeNow] = useState(Date.now());
+  const [eatPressed, setEatPressed] = useState(false);
   const { timerData, isLoading, addTimestamp } = useTimer();
 
   function handleTimerPress() {
@@ -88,9 +94,17 @@ export function TimerComponent() {
             <DateText>{renderTimestamp()}</DateText>
             <H2 center>{timeInSeconds()}</H2>
             <H4 center>Total burritos: {timerData.burritoCount}</H4>
+            <Margin top={1}>
+              <StatCounterText center>
+                Last 7 days: {burritosLastSevenDays(timerData.timestampList)}
+              </StatCounterText>
+              <StatCounterText center>
+                Last 30 days: {burritosLastThirtyDays(timerData.timestampList)}
+              </StatCounterText>
+            </Margin>
           </Flex>
 
-          <Margin top={6} bottom={4}>
+          <Margin top={6} bottom={4} position="relative">
             <Flex
               flexDirection="row"
               alignItems="center"
@@ -99,11 +113,15 @@ export function TimerComponent() {
               <RoundButton size="small" color="transparent" />
               <Margin left={1} right={1}>
                 <RoundButton
+                  delayLongPress={1000}
                   onLongPress={handleTimerPress}
                   color="purple"
                   size="large"
                   label="Eat!"
+                  onPressIn={() => setEatPressed(true)}
+                  onPressOut={() => setEatPressed(false)}
                 />
+                {eatPressed && <BurritoEatingAnimation />}
               </Margin>
               <RoundButton onPress={handleShare} color="orange" size="small">
                 <Ionicons name="share-social" size={24} color="white" />

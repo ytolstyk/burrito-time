@@ -98,29 +98,33 @@ export const RoundButtonText = styled.Text<RoundButtonProps>`
   }};
 `;
 
-export function RoundButton(
-  props: RoundButtonProps & { children?: string | number | null | ReactElement }
-) {
+export function RoundButton({
+  color,
+  size,
+  children,
+  label,
+  ...restProps
+}: RoundButtonProps & { children?: string | number | null | ReactElement }) {
   function renderInnerButton(pressed: boolean) {
-    if (props.label) {
+    if (label) {
       return (
-        <RoundButtonText {...props} pressed={pressed}>
-          {props.label}
+        <RoundButtonText size={size} color={color} pressed={pressed}>
+          {label}
         </RoundButtonText>
       );
     }
 
-    if (props.children) {
-      return props.children;
+    if (children) {
+      return children;
     }
 
     return null;
   }
 
   return (
-    <Pressable {...props}>
+    <Pressable {...restProps}>
       {({ pressed }) => (
-        <RoundButtonBackground {...props} pressed={pressed}>
+        <RoundButtonBackground color={color} size={size} pressed={pressed}>
           {renderInnerButton(pressed)}
         </RoundButtonBackground>
       )}

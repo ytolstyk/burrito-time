@@ -70,6 +70,7 @@ type MarginProps = {
   top?: number;
   left?: number;
   right?: number;
+  position?: CSS.Property.Position;
 };
 
 export const Margin = styled.View<MarginProps>`

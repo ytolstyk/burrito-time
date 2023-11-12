@@ -20,7 +20,7 @@ export function Router({ theme }: Props) {
         }}
       >
         <Drawer.Navigator>
-          <Drawer.Screen name="Home" component={TimerComponent} />
+          <Drawer.Screen name="Eat-a-Burrita" component={TimerComponent} />
           <Drawer.Screen name="Settings" component={SettingsComponent} />
         </Drawer.Navigator>
       </ThemeProvider>

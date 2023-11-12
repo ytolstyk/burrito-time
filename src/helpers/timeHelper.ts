@@ -38,3 +38,27 @@ export function yearWorthOfTimestamps(timestamps: number[]) {
   // consider using while loop and unshift because these are sorted
   return timestamps.filter((stamp) => now - stamp < onYearInMilliseconds);
 }
+
+export function burritosLastSevenDays(timestamps: number[]) {
+  const now = Date.now();
+
+  return timestamps.reduce((total, stamp) => {
+    if (now - stamp < oneWeekInMilliseconds) {
+      return total + 1;
+    }
+
+    return total;
+  }, 0);
+}
+
+export function burritosLastThirtyDays(timestamps: number[]) {
+  const now = Date.now();
+
+  return timestamps.reduce((total, stamp) => {
+    if (now - stamp < oneMonthInMilliseconds) {
+      return total + 1;
+    }
+
+    return total;
+  }, 0);
+}
