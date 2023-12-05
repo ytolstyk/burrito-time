@@ -12,9 +12,8 @@
     "orientation": "portrait",
     "android": {
       "package": "com.ytolstykh.eataburrita",
-      "versionCode": 3,
-      "permissions": [],
-      "enableDangerousExperimentalLeanBuilds": true
+      "versionCode": 4,
+      "permissions": []
     },
     "extra": {
       "eas": {
