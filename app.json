@@ -5,7 +5,7 @@
     "name": "Eat-a-Burrita",
     "icon": "./assets/logo.png",
     "slug": "burrito-time",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "assetBundlePatterns": [
       "assets/**/*"
     ],
